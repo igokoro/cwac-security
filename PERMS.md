@@ -230,17 +230,85 @@ then App C, then App A.
 
 ## Behavior Analysis
 
-TBD
+The behavior exhibited in these scenarios is consistent with
+two presumed implementation "features" of Android's permission system:
+
+1. First one in wins. In other words, the first app (or framework,
+in the case of the OS's platform permissions) that defines a
+`<permission>` for a given `android:name` gets to determine what
+the description is and what the protection level is.
+
+2. The user is only prompted to confirm a permission if the
+app being installed has a `<uses-permission>` element, the
+permission was already defined by some other app, and the
+protection level is not `signature`.
 
 ## Risk Assessment
 
-TBD
+The "first one in wins" rule is a blessing and a curse. It is a
+curse, insofar as it opens up the possibility for malware to hold
+a custom permission without the user's awareness of that, and even
+to downgrade a `signature`-level permission to `normal`. However,
+it is a blessing, in that the malware would have to be installed first;
+if it is installed second, either its request to hold the permission
+will be seen by the user (`normal` or `dangerous`) or the request to
+hold the permission will be rejected (`signature`).
+
+This makes it somewhat unlikely for a piece of malware to try to 
+sneakily make off with data. Eventually, if enough users start to
+ask publicly why App B needs access to App A's data (for cases where
+App A was installed first and the user knows about the permission
+request), somebody in authority may eventually realize that this
+is a malware attack. Of course, "eventually" may be a rather long time.
+
+However, there are some situations where Android's custom permission
+behavior presents risk even greater than that. If the attacker has
+a means of being *sure* that their app was installed first, they can
+hold any permission from any third-party app they want to that was
+known at install time.
+
+For example:
+
+- Somebody could sell a used Android device, and the buyer could
+neglect to factory-reset it, and the malware could be installed
+by the seller
+
+- Somebody could sell a used Android device with a ROM mod
+preinstalled, based off of a normal ROM mod (e.g., CyanogenMod), but
+with an additional bit of malware installed, to prevent a factory
+reset from foiling the attack'
+
+- Somebody could distribute devices to users who might think the device
+is "factory clean" and not laden with malware (e.g., devices given
+as gifts)
+
+- Somebody could distribute devices to users who might think that
+the pre-installed malware is actually a legitimate app (e.g.,
+devices given to employees by an employer wishing to monitor usage
+by examining protected data from third-party apps)
 
 ## Mitigation
 
-TBD
+The "first one in wins" rule also leads us to a mitigation strategy:
+On first run of our app, see if any other app has defined permissions
+that we have defined. If that has happened, then we are at risk, and
+take appropriate steps. If, however, no other app has defined our
+custom permissions, then the Android permission system should work
+for us, and we can proceed as normal.
+
+[The CWAC-Security library](https://github.com/commonsguy/cwac-security)
+provides some helper code to detect
+other apps defining the same custom permissions that you define.
 
 ## Acknowledgements
 
-TBD
+The author (Mark Murphy) would like to thank:
+
+- [Mark Carter](http://twitter.com/marcardar), whose comments on a
+StackOverflow question led the author down the path towards greater
+research of this issue
+
+- ["Justin Case"](https://twitter.com/TeamAndIRC), *nom de plume* of
+an Android security researcher, for helping to confirm that this issue
+was known, albeit not that widely
 
