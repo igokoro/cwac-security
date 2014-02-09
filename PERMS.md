@@ -4,7 +4,11 @@ Android, since the beginning, has offered both platform permissions
 (defined by the framework) and custom permissions (defined by apps).
 
 Unfortunately, custom permissions have some undocumented limitations
-that make them intrinsically risky. Here, we will walk through some
+that make them intrinsically risky. Specifically, custom permissions
+can be defined by anyone, at any time, and "first one in wins", which
+opens up the possibility of unexpected behavior.
+
+Here, we will walk through some
 scenarios and show where the problems arise, plus discuss how to
 mitigate them as best we can.
 
@@ -50,7 +54,7 @@ does, albeit with different descriptive information (e.g.,
 `android:description`) and, at times, a different protection level.
 
 All three apps are signed with different signing keys, because
-most likely they are from different developers.
+in the real world they would be from different developers.
 
 So, to recap:
 
