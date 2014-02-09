@@ -314,5 +314,5 @@ research of this issue
 
 - ["Justin Case"](https://twitter.com/TeamAndIRC), *nom de plume* of
 an Android security researcher, for helping to confirm that this issue
-was known, albeit not that widely
+was known, albeit perhaps not that widely
 
