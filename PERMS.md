@@ -105,7 +105,7 @@ App A before App C. This is particularly true for publicly-distributed
 apps on common markets, like the Play Store.
 
 When the user installs App C, the user is not informed about the
-request for the custom permission, because that permission has not
+request for the custom permission, presumably because that permission has not
 yet been defined. If the user later installs App A, App C is not
 retroactively granted the permission, and so App C's attempts
 to use the secured component fail.
@@ -185,25 +185,54 @@ So, going to the two questions:
 
 1. The user is **not** informed about App B's request for the permission...
 
-2. ...but App B gets it anyway
+2. ...but App B gets it anyway and can access the secured component
 
 ### The Downgraded-Level Malware Case (B, Then A, Again)
 
-TBD
+You might think that the preceding problem would only be for
+`normal` or `dangerous` protection levels. If App A defines
+a permission as requiring a matching `signature`, and App A marks a
+component as being defended by that permission, Android must require
+the signature match, right?
+
+Wrong.
+
+The behavior is identical to the preceding case. Android does
+not use the *defender's* protection level. It uses the *definer's*
+protection level, meaning the protection level of whoever was installed
+first and had the `<permission>` element.
+
+So, if App A has the custom permission defined as `signature`, and
+App B has the custom permission defined as `normal`, if App B is
+installed first, the behavior is as shown in the preceding section:
+
+1. The user is **not** informed about App B's request for the permission...
+
+2. ...but App B gets it anyway and can access the secured component,
+despite the signatures not matching
 
 ### The Peer Apps Case With a Side Order of C
 
+What happens if we add App C back into the mix? Specifically, what
+if App B is installed first, then App A, then App C?
+
+When App C eventually gets installed, the user is prompted for the
+custom permission that App C requests via `<uses-permission>`.
+However, the description that the user sees is from App B, the one
+that first defined the custom `<permission>`. Moreover, the
+protection level is whatever App B defined it to be. So if App B
+downgraded the protection level from App A's intended `signature`
+to be `normal`, App C can hold that permission and access the
+secured App A component, even if it is signed by another signing key.
+
+Not surprisingly, the same results occur if you install App B,
+then App C, then App A.
+
+## Behavior Analysis
+
 TBD
 
-#### A, Then B, Then C
-
-TBD
-
-#### B, Then A, Then C
-
-TBD
-
-## Analysis
+## Risk Assessment
 
 TBD
 
