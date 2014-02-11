@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Security Demo A</string>
+    <string name="perm_desc">Allows access to secret stuff from sample app</string>
+    <string name="perm_label">Access Secret Stuff</string>
+    <string name="evil">One or more apps have defined our custom permission already!</string>
+    <string name="no_activity">There is no PDF viewer available -- sorry!</string>
+</resources>
