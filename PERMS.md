@@ -308,11 +308,13 @@ other apps defining the same custom permissions that you define.
 
 The author (Mark Murphy) would like to thank:
 
-- [Mark Carter](http://twitter.com/marcardar), whose comments on a
-StackOverflow question led the author down the path towards greater
-research of this issue
+- [Mark Carter](http://twitter.com/marcardar), whose
+[comments on a StackOverflow question](https://stackoverflow.com/users/444761/mark-carter)
+brought this vulnerability to my attention,
+and who also provided the first proof of concept implementation
 
 - ["Justin Case"](https://twitter.com/TeamAndIRC), *nom de plume* of
 an Android security researcher, for helping to confirm that this issue
-was known, albeit perhaps not that widely
-
+was known, albeit perhaps not that widely, and for providing the
+inspiration for the `PermissionUtils` class in the CWAC-Security
+library
