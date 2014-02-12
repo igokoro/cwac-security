@@ -309,7 +309,7 @@ other apps defining the same custom permissions that you define.
 The author (Mark Murphy) would like to thank:
 
 - [Mark Carter](http://twitter.com/marcardar), whose
-[comments on a StackOverflow question](https://stackoverflow.com/users/444761/mark-carter)
+[comments on a StackOverflow question](https://stackoverflow.com/questions/11730085/android-custom-permission-fails-based-on-app-install-order/11730133#comment32392353_11730133)
 brought this vulnerability to my attention,
 and who also provided the first proof of concept implementation
 
