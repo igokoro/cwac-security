@@ -187,11 +187,11 @@ In addition, `or()` tells `TrustManagerBuilder` to logically OR any subsequent c
 with whatever came previously in the build, while `and()` indicates that subsequent
 configuration should be logically AND-ed with whatever came previously.
 
-## Scenarios
+### Scenarios
 
 All of that will make a bit more sense if we look at some candidate scenarios.
 
-### You Want To Use a Self-Signed Certificate
+#### You Want To Use a Self-Signed Certificate
 
 As [Moxie Marlinspike points out](http://www.thoughtcrime.org/blog/authenticity-is-broken-in-ssl-but-your-app-ha/),
 one way to avoid having your app be the victim of a man-in-the-middle (MITM)
@@ -250,7 +250,7 @@ new TrustManagerBuilder(this)
   .useDefault();
 ```
 
-### You Want To Use a Private Certificate Authority
+#### You Want To Use a Private Certificate Authority
 
 Larger organizations might set up their own CA for signing their own
 certificates. Think of this as self-signed certificates on an industrial scale.
