@@ -14,6 +14,10 @@ custom permissions before your app was installed
 describing what sorts of SSL certificates you want to support in your
 HTTPS operations
 
+- a `SignatureUtils` class to help you determine the SHA-256 hash of the
+signing key of some package, to compare against known values, to help
+detect whether you are about to be communicating with some hacked version of an app
+
 This Android library project is 
 [available as a JAR](https://github.com/commonsguy/cwac-security/releases)
 or as an artifact for use with Gradle. To use that, add the following
@@ -287,6 +291,22 @@ new TrustManagerBuilder(this)
   .or()
   .useDefault();
 ```
+
+Usage: SignatureUtils
+---------------------
+To find out the SHA-256 hash of some app, call `SignatureUtils.getSignatureHash()`,
+passing in some `Context` and the package name of the app. This returns a capitalized,
+colon-delimited SHA-256 hash string... the same format that you get when using
+Java 7's **`keytool`** to examine a signing key. You can then compare this value with
+the expected value (e.g., a string resource in your own app), and take steps if they
+do not match.
+
+You can find out your own package's signature via the convenience method
+`SignatureUtils.getOwnSignatureHash()`, just supplying a `Context` as a parameter.
+While you might be tempted to use this for the purposes of seeing if *you* have been
+tampered with, whoever does the tampering would likely remove your call to
+`getOwnSignatureHash()` as a part of that tampering. Hence, this will only catch
+stupid attackers, which may or may not be worth the investment in effort.
 
 Dependencies
 ------------
