@@ -39,7 +39,7 @@ public class CompositeTrustManager implements X509TrustManager {
       addAll(mgrs);
     }
 
-    this.matchAll=matchAll;
+    setMatchAll(matchAll);
   }
 
   public void add(X509TrustManager mgr) {
@@ -50,6 +50,22 @@ public class CompositeTrustManager implements X509TrustManager {
     for (X509TrustManager mgr : mgrs) {
       managers.add(mgr);
     }
+  }
+  
+  public boolean isMatchAll() {
+    return(matchAll);
+  }
+  
+  public void setMatchAll(boolean matchAll) {
+    if (managers.size()>1) {
+      throw new IllegalStateException("Cannot change mode once 2+ managers added");
+    }
+    
+    this.matchAll=matchAll;
+  }
+  
+  public int size() {
+    return(managers.size());
   }
 
   @Override

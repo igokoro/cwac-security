@@ -108,7 +108,14 @@ public class TrustManagerBuilder {
    * @return the builder for chained calls
    */
   public TrustManagerBuilder or() {
-    mgr=CompositeTrustManager.matchAny(mgr);
+    if (mgr.isMatchAll()) {
+      if (mgr.size() < 2) {
+        mgr.setMatchAll(false);
+      }
+      else {
+        mgr=CompositeTrustManager.matchAny(mgr);
+      }
+    }
 
     return(this);
   }
@@ -123,7 +130,14 @@ public class TrustManagerBuilder {
    * @return the builder for chained calls
    */
   public TrustManagerBuilder and() {
-    mgr=CompositeTrustManager.matchAll(mgr);
+    if (!mgr.isMatchAll()) {
+      if (mgr.size() < 2) {
+        mgr.setMatchAll(true);
+      }
+      else {
+        mgr=CompositeTrustManager.matchAll(mgr);
+      }
+    }
 
     return(this);
   }
