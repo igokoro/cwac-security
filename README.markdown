@@ -323,7 +323,7 @@ has only been done using `HttpsURLConnection` and `OkHttp`. It should work with
 
 Version
 -------
-This is version v0.2.0 of this module, meaning it is rather new.
+This is version v0.2.1 of this module, meaning it is rather new.
 
 Demo
 ----
@@ -366,6 +366,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.2.1: added `SignatureUtils`
 - v0.2.0: added `TrustManagerBuilder` and supporting classes
 - v0.1.0: initial release
 
