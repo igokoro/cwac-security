@@ -136,7 +136,7 @@ TrustManagerBuilder builder=new TrustManagerBuilder();
 
 // configure builder here
 
-SSLContext ssl=SSLContext.getInstance("TLS")
+SSLContext ssl=SSLContext.getInstance("TLS");
 
 ssl.init(null, builder.buildArray(), null);
 
@@ -154,7 +154,7 @@ TrustManagerBuilder builder=new TrustManagerBuilder();
 
 // configure builder here
 
-SSLContext ssl=SSLContext.getInstance("TLS")
+SSLContext ssl=SSLContext.getInstance("TLS");
 
 ssl.init(null, builder.buildArray(), null);
 
