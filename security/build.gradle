@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'android-library'
 apply plugin: 'android-maven'
 
-version '0.2.1'
+version '0.3.0'
 group 'com.commonsware.cwac'
 
 dependencies {
