@@ -115,7 +115,7 @@ your application and users
 Usage: `TrustManagerBuilder`
 ----------------------------
 To keep this README to a sensible length, discussion of `TrustManagerBuilder`
-is broken out into [its own page](TrustManagerBuilder).
+is broken out into [its own page](https://github.com/commonsguy/cwac-security/blob/master/TrustManagerBuilder.markdown).
 
 Usage: SignatureUtils
 ---------------------
