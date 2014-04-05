@@ -5,7 +5,7 @@ This project contains utility code related to Android security
 measures.
 
 At present, it contains:
-
+ 
 - a `PermissionUtils` class with a `checkCustomPermissions()`
 static method, to help you detect if another app has defined your
 custom permissions before your app was installed
