@@ -1,5 +1,5 @@
-Usage: `TrustManagerBuilder`
-----------------------------
+# Usage: `TrustManagerBuilder`
+
 Android supports SSL "out of the box". That support works best with
 `HttpsURLConnection` and [Square's OkHttp](http://square.github.io/okhttp/).
 It will support a reasonable set of certificate authorities for validating
