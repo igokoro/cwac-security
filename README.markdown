@@ -38,6 +38,8 @@ dependencies {
 Or, if you cannot use SSL, use `http://repo.commonsware.com` for the repository
 URL.
 
+**NOTE**: The JAR name, as of v0.3.1, has a `cwac-` prefix, to help distinguish it from other JARs.
+
 Usage: checkCustomPermissions()
 ------------------------------
 Custom permissions in Android are "first one in wins". In other
@@ -173,7 +175,8 @@ file.
 Questions
 ---------
 If you have questions regarding the use of this code, please post a question
-on [StackOverflow](http://stackoverflow.com/questions/ask) tagged with `commonsware` and `android`. Be sure to indicate
+on [StackOverflow](http://stackoverflow.com/questions/ask) tagged with
+`commonsware-cwac` and `android` after [searching to see if there already is an answer](https://stackoverflow.com/search?q=[commonsware-cwac]+camera). Be sure to indicate
 what CWAC module you are having issues with, and be sure to include source code 
 and stack traces if you are encountering crashes.
 
@@ -191,6 +194,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.3.1: added `cwac-` prefix to JAR
 - v0.3.0: added certificate memorization to `TrustManagerBuilder`
 - v0.2.1: added `SignatureUtils`
 - v0.2.0: added `TrustManagerBuilder` and supporting classes
