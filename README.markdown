@@ -31,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.commonsware.cwac:security:0.3.+'
+    compile 'com.commonsware.cwac:security:0.4.+'
 }
 ```
 
@@ -86,8 +86,13 @@ Each `PermissionLint` in the `ArrayList` contains the following
 *as declared in the other app*
 
 - `boolean wasDowngraded`, which will be `true` if you declared
-the permisison to be `signature`, but the other app declared
+the permissison to be `signature`, but the other app declared
 it to be `normal` or `dangerous`
+
+- `boolean signatureDiffers`, which will be `true` if you declared
+the permission to be `signature`, and the other app also declared it
+to be `signature`, and the other app is signed by a different signing key
+than was your app
 
 - `boolean wasUpgraded`, which will be `true` if you declared
 the permission to be `normal` or `dangerous`, but the other
@@ -98,7 +103,7 @@ user's configured device locale, the label or description of
 the other app's edition of this permission differs from your
 edition of this permission
 
-Hence, if all three boolean fields are `false`, the permission
+Hence, if all four boolean fields are `false`, the permission
 in the other app is functionally identical to your own definition,
 at least for this user and this locale.
 
@@ -150,7 +155,7 @@ has only been done using `HttpsURLConnection` and `OkHttp`. It should work with
 
 Version
 -------
-This is version v0.3.0 of this module, meaning it is rather new.
+This is version v0.4.0 of this module, meaning it is rather new.
 
 Demo
 ----
@@ -194,6 +199,7 @@ the fence may work, but it may not.
 
 Release Notes
 -------------
+- v0.4.0: added signature check and `signatureDiffers` to `PermissionUtils`
 - v0.3.1: added `cwac-` prefix to JAR
 - v0.3.0: added certificate memorization to `TrustManagerBuilder`
 - v0.2.1: added `SignatureUtils`
