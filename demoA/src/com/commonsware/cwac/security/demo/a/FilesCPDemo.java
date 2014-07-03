@@ -63,6 +63,11 @@ public class FilesCPDemo extends Activity {
                   "...and they downgraded the protection level");
           }
 
+          if (lint.signaturesDiffer) {
+            Log.e("SecurityDemoA",
+                  "...and they are signed by a different signing key, despite our signature-level permission");
+          }
+
           if (lint.proseDiffers) {
             Log.e("SecurityDemoA",
                   "...and they altered the label or description");
