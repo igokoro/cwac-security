@@ -20,6 +20,7 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.PermissionInfo;
 import android.text.TextUtils;
+import android.util.Log;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -60,6 +61,26 @@ public class PermissionUtils {
               }
               else if (base > myBase) {
                 lint.wasUpgraded=true;
+              }
+
+              if (base == PermissionInfo.PROTECTION_SIGNATURE
+                  || base == PermissionInfo.PROTECTION_SIGNATURE_OR_SYSTEM) {
+                if (myBase == PermissionInfo.PROTECTION_SIGNATURE
+                    || myBase == PermissionInfo.PROTECTION_SIGNATURE_OR_SYSTEM) {
+                  lint.signaturesDiffer=true;
+
+                  try {
+                    if (SignatureUtils.getOwnSignatureHash(ctxt)
+                                      .equals(SignatureUtils.getSignatureHash(ctxt,
+                                                                              pkg.packageName))) {
+                      lint.signaturesDiffer=false;
+                    }
+                  }
+                  catch (Exception e) {
+                    Log.e("PermissionUtils",
+                          "Exception comparing signatures", e);
+                  }
+                }
               }
 
               CharSequence desc=perm.loadDescription(mgr);

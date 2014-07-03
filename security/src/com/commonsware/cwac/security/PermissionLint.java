@@ -21,6 +21,7 @@ public class PermissionLint {
   public boolean wasDowngraded=false;
   public boolean wasUpgraded=false;
   public boolean proseDiffers=false;
+  public boolean signaturesDiffer=false;
   
   PermissionLint(PermissionInfo perm) {
     this.perm=perm;
