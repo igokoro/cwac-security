@@ -12,6 +12,9 @@ Here, we will walk through some
 scenarios and show where the problems arise, plus discuss how to
 mitigate them as best we can.
 
+**UPDATE 2014-08-04**: The "L" Developer Preview has different behavior
+with respect to this issue, described [later in this document](https://github.com/commonsguy/cwac-security/blob/master/PERMS.md#l-developer-preview-behavior).
+
 ## Scenarios
 
 All of the following scenarios focus on three major app profiles.
