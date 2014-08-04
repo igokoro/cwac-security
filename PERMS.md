@@ -304,6 +304,24 @@ for us, and we can proceed as normal.
 provides some helper code to detect
 other apps defining the same custom permissions that you define.
 
+## "L" Developer Preview Behavior
+
+The "L" Developer Preview only allows apps signed with the same signing key to define the same `<permission>`
+element. If a user tries to install an app that defines the same `<permission>` element as does some other already-installed
+app, and the two apps are not signed by the same signing key, the second app's installation fails with an
+`INSTALL_FAILED_DUPLICATE_PERMISSION` error. The actual `protectionLevel` of the `<permission>` does not
+matter in this case -- even a `normal` permission has this effect. Similarly, this occurs even if the
+`<permission>` elements have the same definition, down to the same values for the same string resources
+for the label and description.
+
+On the plus side, this avoids the permission sneak attacks that are described in this document.
+
+However, this puts more emphasis on getting the installation order right. For example, a plugin can no longer
+define the `<permission>` that the host app defines, unless the host and the plugin are signed by the
+same signing key, eliminating third-party plugins. Instead, the host must be the only app that
+defines the `<permission>`, which in turn means that the plugin must be installed after the host for
+it to get the permission.
+
 ## Acknowledgements
 
 The author (Mark Murphy) would like to thank:
