@@ -18,6 +18,7 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.res.AssetManager;
 import android.database.Cursor;
+import android.database.MatrixCursor;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
@@ -31,14 +32,16 @@ import java.util.HashMap;
 public class FileProvider extends ContentProvider {
   public static final Uri CONTENT_URI=
       Uri.parse("content://com.commonsware.cwac.security.demo.files/");
-  private static final HashMap<String, String> MIME_TYPES=
+    private static final HashMap<String, String> MIME_TYPES=
       new HashMap<String, String>();
 
   static {
     MIME_TYPES.put(".pdf", "application/pdf");
   }
 
-  @Override
+    public static final String[] QUERY_RESULT = new String[]{"_display_name"};
+
+    @Override
   public boolean onCreate() {
     File f=new File(getContext().getFilesDir(), "test.pdf");
 
@@ -87,7 +90,9 @@ public class FileProvider extends ContentProvider {
   @Override
   public Cursor query(Uri url, String[] projection, String selection,
                       String[] selectionArgs, String sort) {
-    throw new RuntimeException("Operation not supported");
+      MatrixCursor cursor = new MatrixCursor(QUERY_RESULT);
+      cursor.addRow(new Object[] {"test.pdf"});
+      return cursor;
   }
 
   @Override

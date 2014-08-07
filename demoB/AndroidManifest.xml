@@ -18,7 +18,7 @@
 		android:name="com.commonsware.cwac.security.demo.OMG"
 		android:description="@string/perm_desc"
 		android:label="@string/perm_label"
-		android:protectionLevel="signature"/>
+		android:protectionLevel="normal"/>
 
 	<uses-permission android:name="com.commonsware.cwac.security.demo.OMG"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
